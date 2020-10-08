@@ -1,6 +1,7 @@
 import React from 'react';
 import react, {Fragment, useState} from 'react';
-import uuid from 'uuid/v4';
+// import uuid from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 const Formulario = ({crearCita}) => {
 
@@ -16,7 +17,7 @@ const Formulario = ({crearCita}) => {
   const [ error,actualizarError ] = useState(false);
 
 
-  //fncion que se ejecuta cada qeu el usuario escribe en un input
+  //funcion que se ejecuta cada qeu el usuario escribe en un input
   const actulizarState = e => {
     actualizarCita({
       ...cita,
@@ -43,13 +44,21 @@ const Formulario = ({crearCita}) => {
   
 
     //Asignar un Id
-    cita.id = uuid();
+    // const { v4: uuidv4 } = require('uuid');
+    cita.id = uuidv4();
 
     //Crear la cita
     crearCita(cita);
 
 
     //Reiniciar el form
+    actualizarCita({
+      mascota: '',
+    propietario: '',
+    fecha:'',
+    hora: '',
+    sintomas:'',
+    })
 
   }
 
